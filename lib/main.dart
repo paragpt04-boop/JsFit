@@ -18,6 +18,7 @@ const cYellow = Color(0xFFFFD600);
 
 // ═══ USER PROFILE ═══
 class UserProfile {
+  UserProfile();
   int age = 0;
   String ageRange = "";
   String gender = "";
