@@ -33,7 +33,6 @@ class UserProfile {
   String stressLevel = "Moderado";
   String workoutStyle = "Equilibrado";
   bool onboardingDone = false;
-
   Map<String, dynamic> toJson() => {
     "age": age, "ageRange": ageRange, "gender": gender,
     "height": height, "weight": weight, "goals": goals,
@@ -43,51 +42,49 @@ class UserProfile {
     "stressLevel": stressLevel, "workoutStyle": workoutStyle,
     "onboardingDone": onboardingDone,
   };
-
   factory UserProfile.fromJson(Map<String, dynamic> j) {
     final p = UserProfile();
-    p.age = j["age"] ?? 0;
-    p.ageRange = j["ageRange"] ?? "";
-    p.gender = j["gender"] ?? "";
-    p.height = (j["height"] ?? 0).toDouble();
-    p.weight = (j["weight"] ?? 0).toDouble();
-    p.goals = List<String>.from(j["goals"] ?? []);
-    p.experience = j["experience"] ?? "";
-    p.trainingDays = j["trainingDays"] ?? 3;
-    p.sessionTime = j["sessionTime"] ?? "45 min";
-    p.equipment = List<String>.from(j["equipment"] ?? []);
-    p.limitations = List<String>.from(j["limitations"] ?? []);
-    p.sleepHours = (j["sleepHours"] ?? 7).toDouble();
-    p.stressLevel = j["stressLevel"] ?? "Moderado";
-    p.workoutStyle = j["workoutStyle"] ?? "Equilibrado";
-    p.onboardingDone = j["onboardingDone"] ?? false;
-    return p;
+  p.age = j["age"] ?? 0;
+  p.ageRange = j["ageRange"] ?? "";
+  p.gender = j["gender"] ?? "";
+  p.height = (j["height"] ?? 0).toDouble();
+  p.weight = (j["weight"] ?? 0).toDouble();
+  p.goals = List<String>.from(j["goals"] ?? []);
+  p.experience = j["experience"] ?? "";
+  p.trainingDays = j["trainingDays"] ?? 3;
+  p.sessionTime = j["sessionTime"] ?? "45 min";
+  p.equipment = List<String>.from(j["equipment"] ?? []);
+  p.limitations = List<String>.from(j["limitations"] ?? []);
+  p.sleepHours = (j["sleepHours"] ?? 7).toDouble();
+  p.stressLevel = j["stressLevel"] ?? "Moderado";
+  p.workoutStyle = j["workoutStyle"] ?? "Equilibrado";
+  p.onboardingDone = j["onboardingDone"] ?? false;
+  return p;
   }
 
   double get bmi => height > 0 ? weight / ((height/100) * (height/100)) : 0;
-  
   double get dailyCalories {
     if (age == 0 || height == 0 || weight == 0) return 2000;
-    double bmr;
-    if (gender == "Hombre") {
+  double bmr;
+  if (gender == "Hombre") {
       bmr = 10 * weight + 6.25 * height - 5 * age + 5;
     } else {
       bmr = 10 * weight + 6.25 * height - 5 * age - 161;
     }
     double factor = 1.375;
-    if (trainingDays <= 2) factor = 1.2;
-    else if (trainingDays <= 4) factor = 1.375;
-    else if (trainingDays <= 6) factor = 1.55;
-    else factor = 1.725;
-    if (goals.contains("Perder grasa")) return bmr * factor - 300;
-    if (goals.contains("Ganar músculo")) return bmr * factor + 300;
-    return bmr * factor;
+  if (trainingDays <= 2) factor = 1.2;
+  else if (trainingDays <= 4) factor = 1.375;
+  else if (trainingDays <= 6) factor = 1.55;
+  else factor = 1.725;
+  if (goals.contains("Perder grasa")) return bmr * factor - 300;
+  if (goals.contains("Ganar músculo")) return bmr * factor + 300;
+  return bmr * factor;
   }
 
   String get fitnessLevel {
     if (experience == "Sedentario total" || experience == "Principiante (nunca he entrenado)") return "Principiante";
-    if (experience == "Principiante con algo de base" || experience == "Intermedio") return "Intermedio";
-    return "Avanzado";
+  if (experience == "Principiante con algo de base" || experience == "Intermedio") return "Intermedio";
+  return "Avanzado";
   }
 
   bool get isSenior => age >= 60;
@@ -100,7 +97,6 @@ class Exercise {
   final String name, muscle, description, difficulty, emoji;
   final List<String> equipment, goodFor, variations;
   final String instructions, commonErrors;
-  
   const Exercise({
     required this.name, required this.muscle, required this.description,
     required this.difficulty, required this.emoji,
@@ -208,7 +204,6 @@ class WorkoutTemplate {
   final String name, description, duration, difficulty, emoji;
   final List<String> exerciseNames;
   final List<String> tags;
-  
   const WorkoutTemplate({
     required this.name, required this.description,
     required this.duration, required this.difficulty,
@@ -260,13 +255,12 @@ List<WorkoutTemplate> getRecommendedWorkouts(UserProfile p) {
       exerciseNames: ["Marcha en sitio", "Burpee modificado", "Sentadilla básica", "Plancha", "Hip thrust"],
       tags: ["Cardio", "HIIT", "Intermedio"]),
   ];
-
   return all.where((w) {
     if (p.isPregnant && !w.tags.contains("Embarazo")) return false;
-    if (p.isPostpartum && !w.tags.contains("Posparto") && !w.tags.contains("Suave")) return false;
-    if (p.isSenior && w.difficulty == "Avanzado") return false;
-    if (p.fitnessLevel == "Principiante" && w.difficulty == "Avanzado") return false;
-    return true;
+  if (p.isPostpartum && !w.tags.contains("Posparto") && !w.tags.contains("Suave")) return false;
+  if (p.isSenior && w.difficulty == "Avanzado") return false;
+  if (p.fitnessLevel == "Principiante" && w.difficulty == "Avanzado") return false;
+  return true;
   }).toList();
 }
 
@@ -308,15 +302,15 @@ class _SplashState extends State<SplashScreen> with SingleTickerProviderStateMix
 
   Future<void> _init() async {
     await Future.delayed(const Duration(milliseconds: 2000));
-    final prefs = await SharedPreferences.getInstance();
-    final data = prefs.getString("profile");
-    if (!mounted) return;
-    if (data != null) {
+  final prefs = await SharedPreferences.getInstance();
+  final data = prefs.getString("profile");
+  if (!mounted) return;
+  if (data != null) {
       final profile = UserProfile.fromJson(jsonDecode(data));
-      if (profile.onboardingDone) {
+  if (profile.onboardingDone) {
         Navigator.pushReplacement(context, MaterialPageRoute(
           builder: (_) => MainScreen(profile: profile)));
-        return;
+  return;
       }
     }
     Navigator.pushReplacement(context, MaterialPageRoute(
@@ -362,7 +356,6 @@ class _OnboardState extends State<OnboardingScreen> {
   final _weightCtrl = TextEditingController();
   final _ageCtrl = TextEditingController();
   final int _totalPages = 10;
-
   void _next() {
     if (_page < _totalPages - 1) {
       _pc.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
@@ -379,13 +372,13 @@ class _OnboardState extends State<OnboardingScreen> {
 
   Future<void> _finish() async {
     _profile.onboardingDone = true;
-    if (_heightCtrl.text.isNotEmpty) _profile.height = double.tryParse(_heightCtrl.text) ?? 0;
-    if (_weightCtrl.text.isNotEmpty) _profile.weight = double.tryParse(_weightCtrl.text) ?? 0;
-    if (_ageCtrl.text.isNotEmpty) _profile.age = int.tryParse(_ageCtrl.text) ?? 0;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("profile", jsonEncode(_profile.toJson()));
-    if (!mounted) return;
-    Navigator.pushReplacement(context, MaterialPageRoute(
+  if (_heightCtrl.text.isNotEmpty) _profile.height = double.tryParse(_heightCtrl.text) ?? 0;
+  if (_weightCtrl.text.isNotEmpty) _profile.weight = double.tryParse(_weightCtrl.text) ?? 0;
+  if (_ageCtrl.text.isNotEmpty) _profile.age = int.tryParse(_ageCtrl.text) ?? 0;
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString("profile", jsonEncode(_profile.toJson()));
+  if (!mounted) return;
+  Navigator.pushReplacement(context, MaterialPageRoute(
       builder: (_) => MainScreen(profile: _profile)));
   }
 
@@ -431,7 +424,6 @@ class _OnboardState extends State<OnboardingScreen> {
           _buildLifestylePage(),
         ])),
     ])));
-
   Widget _buildWelcomePage() => _pageWrapper(
     emoji: "🏋️",
     title: "Bienvenido a JsFit",
@@ -443,7 +435,6 @@ class _OnboardState extends State<OnboardingScreen> {
       _infoCard("📈", "Progreso a tu ritmo"),
     ]),
     onNext: _next);
-
   Widget _buildAgePage() => _pageWrapper(
     emoji: "🎂",
     title: "¿Cuántos años tienes?",
@@ -469,14 +460,13 @@ class _OnboardState extends State<OnboardingScreen> {
       ...["13-17 años", "18-35 años", "36-50 años", "51-65 años", "65+ años"].map((r) =>
         _selectChip(r, _profile.ageRange == r, () => setState(() {
           _profile.ageRange = r;
-          final parts = r.split("-");
-          if (parts.isNotEmpty) {
+  final parts = r.split("-");
+  if (parts.isNotEmpty) {
             _ageCtrl.text = parts[0].replaceAll(RegExp(r"[^0-9]"), "");
           }
         }))),
     ]),
     onNext: _next);
-
   Widget _buildGenderPage() => _pageWrapper(
     emoji: "👤",
     title: "¿Cómo te identificas?",
@@ -486,7 +476,6 @@ class _OnboardState extends State<OnboardingScreen> {
         _selectChip(g, _profile.gender == g, () => setState(() => _profile.gender = g))),
     ]),
     onNext: _next);
-
   Widget _buildMeasurementsPage() => _pageWrapper(
     emoji: "📏",
     title: "Tu altura y peso",
@@ -501,7 +490,6 @@ class _OnboardState extends State<OnboardingScreen> {
         textAlign: TextAlign.center),
     ]),
     onNext: _next);
-
   Widget _buildGoalsPage() => _pageWrapper(
     emoji: "🎯",
     title: "¿Cuál es tu objetivo?",
@@ -514,7 +502,6 @@ class _OnboardState extends State<OnboardingScreen> {
           () => setState(() => _profile.goals.contains(g) ? _profile.goals.remove(g) : _profile.goals.add(g)))),
     ]),
     onNext: _next);
-
   Widget _buildExperiencePage() => _pageWrapper(
     emoji: "⭐",
     title: "Tu nivel de experiencia",
@@ -525,7 +512,6 @@ class _OnboardState extends State<OnboardingScreen> {
         _selectChip(e, _profile.experience == e, () => setState(() => _profile.experience = e))),
     ]),
     onNext: _next);
-
   Widget _buildSchedulePage() => _pageWrapper(
     emoji: "📅",
     title: "Tu disponibilidad",
@@ -545,7 +531,6 @@ class _OnboardState extends State<OnboardingScreen> {
         _selectChip(t, _profile.sessionTime == t, () => setState(() => _profile.sessionTime = t))),
     ]),
     onNext: _next);
-
   Widget _buildEquipmentPage() => _pageWrapper(
     emoji: "🏋️",
     title: "¿Qué equipamiento tienes?",
@@ -557,7 +542,6 @@ class _OnboardState extends State<OnboardingScreen> {
           () => setState(() => _profile.equipment.contains(e) ? _profile.equipment.remove(e) : _profile.equipment.add(e)))),
     ]),
     onNext: _next);
-
   Widget _buildLimitationsPage() => _pageWrapper(
     emoji: "🏥",
     title: "Lesiones o limitaciones",
@@ -573,7 +557,6 @@ class _OnboardState extends State<OnboardingScreen> {
           }))),
     ]),
     onNext: _next);
-
   Widget _buildLifestylePage() => _pageWrapper(
     emoji: "😴",
     title: "Estilo de vida",
@@ -598,7 +581,6 @@ class _OnboardState extends State<OnboardingScreen> {
         _selectChip(s, _profile.workoutStyle == s, () => setState(() => _profile.workoutStyle = s))),
     ]),
     onNext: _finish);
-
   Widget _pageWrapper({required String emoji, required String title, required String subtitle,
     required Widget child, required VoidCallback onNext}) {
     return SingleChildScrollView(
@@ -638,9 +620,7 @@ class _OnboardState extends State<OnboardingScreen> {
           fontSize: 15, fontWeight: selected ? FontWeight.bold : FontWeight.normal))),
         if (selected) const Icon(Icons.check_circle, color: cPurple, size: 20),
       ])));
-
   Widget _multiChip(String label, bool selected, VoidCallback onTap) => _selectChip(label, selected, onTap);
-
   Widget _inputField(String label, TextEditingController ctrl, String hint, String suffix) => TextField(
     controller: ctrl,
     keyboardType: TextInputType.number,
@@ -653,7 +633,6 @@ class _OnboardState extends State<OnboardingScreen> {
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: cPurple, width: 2))));
-
   Widget _infoCard(String emoji, String text) => Container(
     width: double.infinity,
     margin: const EdgeInsets.only(bottom: 8),
@@ -693,8 +672,8 @@ class _MainState extends State<MainScreen> {
       ExercisesTab(profile: _profile),
       ProfileTab(profile: _profile, onUpdate: (p) async {
         setState(() => _profile = p);
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString("profile", jsonEncode(p.toJson()));
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString("profile", jsonEncode(p.toJson()));
       }),
     ]),
     bottomNavigationBar: Container(
@@ -725,8 +704,8 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final workouts = getRecommendedWorkouts(profile);
-    final greeting = _greeting();
-    return Scaffold(
+  final greeting = _greeting();
+  return Scaffold(
       backgroundColor: cBg,
       body: SafeArea(child: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -794,16 +773,16 @@ class HomeTab extends StatelessWidget {
 
   String _greeting() {
     final h = DateTime.now().hour;
-    if (h < 12) return "Buenos días";
-    if (h < 18) return "Buenas tardes";
-    return "Buenas noches";
+  if (h < 12) return "Buenos días";
+  if (h < 18) return "Buenas tardes";
+  return "Buenas noches";
   }
 
   String _motivationalTip(UserProfile p) {
     if (p.isPregnant) return "Durante el embarazo, el ejercicio moderado es beneficioso. Escucha siempre a tu cuerpo.";
-    if (p.isSenior) return "La constancia es más importante que la intensidad. ¡Cada movimiento cuenta!";
-    if (p.fitnessLevel == "Principiante") return "El primer paso es siempre el más difícil. ¡Ya lo diste al abrir esta app!";
-    return "La recuperación es parte del entrenamiento. Duerme bien y mantente hidratado.";
+  if (p.isSenior) return "La constancia es más importante que la intensidad. ¡Cada movimiento cuenta!";
+  if (p.fitnessLevel == "Principiante") return "El primer paso es siempre el más difícil. ¡Ya lo diste al abrir esta app!";
+  return "La recuperación es parte del entrenamiento. Duerme bien y mantente hidratado.";
   }
 
   Widget _statCard(String emoji, String label, String value, Color color) => Container(
@@ -817,7 +796,6 @@ class HomeTab extends StatelessWidget {
       Text(value, style: TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.bold)),
       Text(label, style: const TextStyle(color: cGrey, fontSize: 10)),
     ]));
-
   Widget _alertCard(String emoji, String title, String sub, Color color) => Container(
     margin: const EdgeInsets.only(bottom: 10),
     padding: const EdgeInsets.all(12),
@@ -832,7 +810,6 @@ class HomeTab extends StatelessWidget {
         Text(sub, style: const TextStyle(color: cGrey, fontSize: 11)),
       ]),
     ]));
-
   Widget _workoutCard(BuildContext context, WorkoutTemplate w, bool featured) => GestureDetector(
     onTap: () => Navigator.push(context, MaterialPageRoute(
       builder: (_) => WorkoutDetailScreen(workout: w, profile: profile))),
@@ -862,7 +839,6 @@ class HomeTab extends StatelessWidget {
         ])),
         const Icon(Icons.arrow_forward_ios, color: cGrey, size: 16),
       ])));
-
   Widget _tag(String text, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
     decoration: BoxDecoration(color: color.withOpacity(0.2), borderRadius: BorderRadius.circular(6)),
@@ -877,7 +853,7 @@ class WorkoutsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final workouts = getRecommendedWorkouts(profile);
-    return Scaffold(
+  return Scaffold(
       backgroundColor: cBg,
       appBar: AppBar(backgroundColor: cBg, elevation: 0,
         title: const Text("Entrenamientos", style: TextStyle(color: cWhite, fontWeight: FontWeight.bold))),
@@ -929,7 +905,6 @@ class WorkoutDetailScreen extends StatefulWidget {
 class _WDS extends State<WorkoutDetailScreen> {
   bool _started = false;
   int _currentExercise = 0;
-
   List<Exercise> get _exercises => widget.workout.exerciseNames
     .map((name) => exercises.firstWhere((e) => e.name == name,
       orElse: () => Exercise(name: name, muscle: "", description: "", difficulty: "Principiante", emoji: "💪")))
@@ -1004,7 +979,6 @@ class _WDS extends State<WorkoutDetailScreen> {
           label: Text(_started ? "Detener entrenamiento" : "¡Comenzar ahora!",
             style: const TextStyle(color: cWhite, fontSize: 16, fontWeight: FontWeight.bold)))),
       ])));
-
   Widget _info(String emoji, String text) => Row(mainAxisSize: MainAxisSize.min, children: [
     Text(emoji, style: const TextStyle(fontSize: 14)),
     const SizedBox(width: 4),
@@ -1023,7 +997,6 @@ class ExercisesTab extends StatefulWidget {
 class _ExTab extends State<ExercisesTab> {
   String _filter = "Todos";
   final _filters = ["Todos", "Piernas", "Pecho", "Espalda", "Brazos", "Core", "Cardio", "Flexibilidad", "Movilidad"];
-
   List<Exercise> get _filtered => _filter == "Todos" ? exercises :
     exercises.where((e) => e.muscle.contains(_filter)).toList();
 
@@ -1055,7 +1028,7 @@ class _ExTab extends State<ExercisesTab> {
         itemCount: _filtered.length,
         itemBuilder: (_, i) {
           final ex = _filtered[i];
-          return GestureDetector(
+  return GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(
               builder: (_) => ExerciseDetailScreen(exercise: ex))),
             child: Container(
@@ -1080,7 +1053,6 @@ class _ExTab extends State<ExercisesTab> {
               ])));
         })),
     ]));
-
   Widget _tag(String text, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
     decoration: BoxDecoration(color: color.withOpacity(0.2), borderRadius: BorderRadius.circular(6)),
@@ -1136,12 +1108,10 @@ class ExerciseDetailScreen extends StatelessWidget {
             ]))),
         ],
       ])));
-
   Widget _chip(String text, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     decoration: BoxDecoration(color: color.withOpacity(0.15), borderRadius: BorderRadius.circular(20)),
     child: Text(text, style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.bold)));
-
   Widget _section(String title, String content) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Text(title, style: const TextStyle(color: cWhite, fontSize: 16, fontWeight: FontWeight.bold)),
     const SizedBox(height: 8),
@@ -1168,8 +1138,8 @@ class ProfileTab extends StatelessWidget {
         TextButton(
           onPressed: () async {
             final prefs = await SharedPreferences.getInstance();
-            await prefs.remove("profile");
-            Navigator.pushReplacement(context, MaterialPageRoute(
+  await prefs.remove("profile");
+  Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (_) => const OnboardingScreen()));
           },
           child: const Text("Reiniciar", style: TextStyle(color: cRed))),
@@ -1231,7 +1201,6 @@ class ProfileTab extends StatelessWidget {
                 style: TextStyle(color: cYellow, fontSize: 12))),
             ])),
       ])));
-
   Widget _infoSection(String title, List<Widget> rows) => Container(
     width: double.infinity,
     padding: const EdgeInsets.all(16),
@@ -1241,7 +1210,6 @@ class ProfileTab extends StatelessWidget {
       const SizedBox(height: 10),
       ...rows,
     ]));
-
   Widget _infoRow(String label, String value) => Padding(
     padding: const EdgeInsets.only(bottom: 6),
     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
