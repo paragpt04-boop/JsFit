@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -886,6 +887,25 @@ class WorkoutDetailScreen extends StatefulWidget {
 class _WDS extends State<WorkoutDetailScreen> {
   bool _started = false;
   int _currentExercise = 0;
+  int _seconds = 0;
+  Timer? _timer;
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() => _seconds++);
+    });
+  }
+
+  void _stopTimer() {
+    _timer?.cancel();
+    _seconds = 0;
+  }
+
+  String get _timeStr {
+    final m = _seconds ~/ 60;
+    final s = _seconds % 60;
+    return '${m.toString().padLeft(2,'0')}:${s.toString().padLeft(2,'0')}';
+  }
   List<Exercise> get _exercises => widget.workout.exerciseNames
 .map((name) => exercises.firstWhere((e) => e.name == name,
 orElse: () => Exercise(name: name, muscle: "", description: "", difficulty: "Principiante", emoji: "💪")))
