@@ -114,129 +114,92 @@ const List<Exercise> exercises = [
   Exercise(name: "Sentadilla básica", muscle: "Piernas", description: "Ejercicio fundamental para piernas y glúteos",
     difficulty: "Principiante", emoji: "🦵", equipment: ["Sin material"],
     goodFor: ["Principiante", "Senior", "General"],
-    instructions: "1. Pies al ancho de hombros
-2. Baja como si fueras a sentarte
-3. Rodillas no sobrepasen punteras
-4. Espalda recta",
+    instructions: "1. Pies al ancho de hombros 2. Baja como si fueras a sentarte 3. Rodillas no sobrepasen punteras 4. Espalda recta",
     commonErrors: "Rodillas hacia adentro, espalda arqueada",
     variations: ["Sentadilla en silla (para mayores)", "Sentadilla con pausa", "Sentadilla sumo"]),
   Exercise(name: "Flexiones", muscle: "Pecho", description: "Clásico ejercicio de empuje",
     difficulty: "Principiante", emoji: "💪", equipment: ["Sin material"],
     goodFor: ["General", "Casa"],
-    instructions: "1. Manos al ancho de hombros
-2. Cuerpo recto
-3. Baja el pecho al suelo
-4. Empuja hacia arriba",
-    commonErrors: "Cadera caída, codos muy abiertos",
+    instructions: "1. Manos al ancho de hombros 2. Cuerpo recto 3. Baja el pecho al suelo 4. Empuja hacia arriba",
+    commonErrors: "Cadera caida, codos muy abiertos",
     variations: ["Flexiones en rodillas", "Flexiones en pared (principiantes)", "Flexiones diamante"]),
   Exercise(name: "Plancha", muscle: "Core", description: "Ejercicio isométrico para el core",
     difficulty: "Principiante", emoji: "🏋️", equipment: ["Sin material"],
     goodFor: ["General", "Embarazo (1er trimestre)", "Rehabilitación"],
-    instructions: "1. Apóyate en antebrazos y puntas de pies
-2. Cuerpo recto como tabla
-3. Mantén la posición",
+    instructions: "1. Apoyate en antebrazos y puntas de pies 2. Cuerpo recto como tabla 3. Manten la posicion",
     commonErrors: "Cadera muy alta o muy baja",
     variations: ["Plancha en rodillas", "Plancha lateral", "Plancha con toque de hombro"]),
   Exercise(name: "Sentadilla en silla", muscle: "Piernas", description: "Versión suave ideal para mayores",
     difficulty: "Principiante", emoji: "🪑", equipment: ["Sin material"],
     goodFor: ["Senior", "Movilidad reducida", "Rodillas"],
-    instructions: "1. Siéntate al borde de la silla
-2. Levántate lentamente
-3. Vuelve a sentarte con control",
+    instructions: "1. Sientate al borde de la silla 2. Levantate lentamente 3. Vuelve a sentarte con control",
     commonErrors: "Usar las manos para apoyarse demasiado",
     variations: ["Con apoyo de manos al inicio"]),
   Exercise(name: "Marcha en sitio", muscle: "Cardio", description: "Cardio suave sin impacto",
     difficulty: "Principiante", emoji: "🚶", equipment: ["Sin material"],
     goodFor: ["Senior", "Principiante", "Embarazo", "Rodillas", "Posparto"],
-    instructions: "1. De pie, levanta las rodillas alternadas
-2. Mueve los brazos
-3. Mantén ritmo constante",
+    instructions: "1. De pie, levanta las rodillas alternadas 2. Mueve los brazos 3. Manten ritmo constante",
     commonErrors: "Levantar poco las rodillas",
     variations: ["Marcha con elevación de brazos", "Marcha con giro de cadera"]),
   Exercise(name: "Curl de bíceps", muscle: "Brazos", description: "Ejercicio para bíceps",
     difficulty: "Principiante", emoji: "💪", equipment: ["Mancuernas"],
     goodFor: ["General", "Senior"],
-    instructions: "1. Sostén mancuernas con palmas hacia arriba
-2. Dobla el codo hacia arriba
-3. Baja con control",
+    instructions: "1. Sosten mancuernas con palmas hacia arriba 2. Dobla el codo hacia arriba 3. Baja con control",
     commonErrors: "Balancear el torso, no bajar del todo",
     variations: ["Curl martillo", "Curl concentrado", "Curl con banda"]),
   Exercise(name: "Peso muerto rumano", muscle: "Espalda / Isquios", description: "Trabaja cadena posterior",
     difficulty: "Intermedio", emoji: "🏋️", equipment: ["Mancuernas"],
     goodFor: ["General", "Fuerza"],
-    instructions: "1. Pies al ancho de caderas
-2. Inclínate hacia adelante con espalda recta
-3. Baja las mancuernas por las piernas
-4. Sube apretando glúteos",
+    instructions: "1. Pies al ancho de caderas 2. Inclinate hacia adelante con espalda recta 3. Baja las mancuernas por las piernas 4. Sube apretando gluteos",
     commonErrors: "Redondear la espalda",
     variations: ["Con banda elástica", "Una pierna"]),
   Exercise(name: "Hip thrust", muscle: "Glúteos", description: "El mejor ejercicio para glúteos",
     difficulty: "Principiante", emoji: "🍑", equipment: ["Sin material"],
     goodFor: ["Mujeres", "General", "Posparto"],
-    instructions: "1. Apoya hombros en banco/sofá
-2. Pies al ancho de caderas
-3. Eleva las caderas apretando glúteos
-4. Baja con control",
-    commonErrors: "No apretar glúteos arriba",
+    instructions: "1. Apoya hombros en banco/sofa 2. Pies al ancho de caderas 3. Eleva las caderas apretando gluteos 4. Baja con control",
+    commonErrors: "No apretar gluteos arriba",
     variations: ["Con banda elástica", "Una pierna", "En suelo"]),
   Exercise(name: "Remo con mancuerna", muscle: "Espalda", description: "Trabaja la espalda media",
     difficulty: "Principiante", emoji: "🏋️", equipment: ["Mancuernas"],
     goodFor: ["General", "Postura"],
-    instructions: "1. Apoya una rodilla en banco
-2. Tira la mancuerna hacia la cadera
-3. Codo pegado al cuerpo",
+    instructions: "1. Apoya una rodilla en banco 2. Tira la mancuerna hacia la cadera 3. Codo pegado al cuerpo",
     commonErrors: "Rotar el torso, no bajar del todo",
     variations: ["Remo inclinado con dos mancuernas"]),
   Exercise(name: "Estiramiento de isquiotibiales", muscle: "Flexibilidad", description: "Estiramiento clave para la movilidad",
     difficulty: "Principiante", emoji: "🧘", equipment: ["Sin material"],
     goodFor: ["Senior", "Rehabilitación", "Embarazo", "Todos"],
-    instructions: "1. Siéntate en el suelo con piernas extendidas
-2. Inclínate hacia adelante
-3. Mantén 30 segundos",
+    instructions: "1. Sientate en el suelo con piernas extendidas 2. Inclinate hacia adelante 3. Manten 30 segundos",
     commonErrors: "Redondear la espalda demasiado",
     variations: ["De pie con apoyo en silla", "Sentado en silla"]),
   Exercise(name: "Press de hombros", muscle: "Hombros", description: "Trabaja deltoides",
     difficulty: "Intermedio", emoji: "🏋️", equipment: ["Mancuernas"],
     goodFor: ["General", "Fuerza"],
-    instructions: "1. Mancuernas a altura de hombros
-2. Empuja hacia arriba
-3. Baja con control",
+    instructions: "1. Mancuernas a altura de hombros 2. Empuja hacia arriba 3. Baja con control",
     commonErrors: "Arquear la espalda, bloquear codos",
     variations: ["Sentado", "Con banda elástica"]),
   Exercise(name: "Zancadas", muscle: "Piernas", description: "Trabaja piernas y equilibrio",
     difficulty: "Intermedio", emoji: "🦵", equipment: ["Sin material"],
     goodFor: ["General", "Equilibrio"],
-    instructions: "1. Da un paso grande hacia adelante
-2. Baja la rodilla trasera casi al suelo
-3. Vuelve a la posición inicial",
+    instructions: "1. Da un paso grande hacia adelante 2. Baja la rodilla trasera casi al suelo 3. Vuelve a la posicion inicial",
     commonErrors: "Rodilla delantera sobre el pie",
     variations: ["Zancada estática", "Zancada inversa (más suave para rodillas)", "Con mancuernas"]),
   Exercise(name: "Ejercicio de Kegel", muscle: "Suelo pélvico", description: "Fortalece el suelo pélvico",
     difficulty: "Principiante", emoji: "🌸", equipment: ["Sin material"],
     goodFor: ["Embarazo", "Posparto", "Mujeres", "Incontinencia"],
-    instructions: "1. Contrae los músculos del suelo pélvico
-2. Mantén 5-10 segundos
-3. Relaja
-4. Repite 10 veces",
-    commonErrors: "Contener la respiración, contraer glúteos",
+    instructions: "1. Contrae los musculos del suelo pelvico 2. Manten 5-10 segundos 3. Relaja 4. Repite 10 veces",
+    commonErrors: "Contener la respiracion, contraer gluteos",
     variations: ["Rápidos (contracciones rápidas)", "Con respiración"]),
   Exercise(name: "Rotaciones de tobillo", muscle: "Movilidad", description: "Mejora la movilidad del tobillo",
     difficulty: "Principiante", emoji: "🦶", equipment: ["Sin material"],
     goodFor: ["Senior", "Rehabilitación", "Principiante"],
-    instructions: "1. Sentado o de pie
-2. Levanta un pie
-3. Rota el tobillo en círculos
-4. Cambia de dirección",
+    instructions: "1. Sentado o de pie 2. Levanta un pie 3. Rota el tobillo en circulos 4. Cambia de direccion",
     commonErrors: "Ninguno relevante",
     variations: ["De pie con apoyo"]),
   Exercise(name: "Burpee modificado", muscle: "Full body", description: "Cardio funcional sin salto",
     difficulty: "Intermedio", emoji: "🔥", equipment: ["Sin material"],
     goodFor: ["General", "Cardio"],
-    instructions: "1. De pie, baja las manos al suelo
-2. Camina los pies hacia atrás a plancha
-3. Camina hacia adelante
-4. Levántate",
-    commonErrors: "Hacerlo muy rápido sin control",
+    instructions: "1. De pie, baja las manos al suelo 2. Camina los pies hacia atras a plancha 3. Camina hacia adelante 4. Levantate",
+    commonErrors: "Hacerlo muy rapido sin control",
     variations: ["Sin el salto (versión suave)", "Versión completa con salto"]),
 ];
 
