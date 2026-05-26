@@ -43,48 +43,52 @@ class UserProfile {
 "onboardingDone": onboardingDone,
   };
   factory UserProfile.fromJson(Map<String, dynamic> j) {
-final p = UserProfile();
-  p.age = j["age"] ?? 0;
-  p.ageRange = j["ageRange"] ?? "";
-  p.gender = j["gender"] ?? "";
-  p.height = (j["height"] ?? 0).toDouble();
-  p.weight = (j["weight"] ?? 0).toDouble();
-  p.goals = List<String>.from(j["goals"] ?? []);
-  p.experience = j["experience"] ?? "";
-  p.trainingDays = j["trainingDays"] ?? 3;
-  p.sessionTime = j["sessionTime"] ?? "45 min";
-  p.equipment = List<String>.from(j["equipment"] ?? []);
-  p.limitations = List<String>.from(j["limitations"] ?? []);
-  p.sleepHours = (j["sleepHours"] ?? 7).toDouble();
-  p.stressLevel = j["stressLevel"] ?? "Moderado";
-  p.workoutStyle = j["workoutStyle"] ?? "Equilibrado";
-  p.onboardingDone = j["onboardingDone"] ?? false;
-  return p;
+    final p = UserProfile();
+    p.age = j["age"] ?? 0;
+    p.ageRange = j["ageRange"] ?? "";
+    p.gender = j["gender"] ?? "";
+    p.height = (j["height"] ?? 0).toDouble();
+    p.weight = (j["weight"] ?? 0).toDouble();
+    p.goals = List<String>.from(j["goals"] ?? []);
+    p.experience = j["experience"] ?? "";
+    p.trainingDays = j["trainingDays"] ?? 3;
+    p.sessionTime = j["sessionTime"] ?? "45 min";
+    p.equipment = List<String>.from(j["equipment"] ?? []);
+    p.limitations = List<String>.from(j["limitations"] ?? []);
+    p.sleepHours = (j["sleepHours"] ?? 7).toDouble();
+    p.stressLevel = j["stressLevel"] ?? "Moderado";
+    p.workoutStyle = j["workoutStyle"] ?? "Equilibrado";
+    p.onboardingDone = j["onboardingDone"] ?? false;
+    return p;
   }
-double get bmi => height > 0 ? weight / ((height/100) * (height/100)) : 0;
+
+  double get bmi => height > 0 ? weight / ((height/100) * (height/100)) : 0;
+
   double get dailyCalories {
-if (age == 0 || height == 0 || weight == 0) return 2000;
-  double bmr;
-  if (gender == "Hombre") {
-bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-} else {
-bmr = 10 * weight + 6.25 * height - 5 * age - 161;
-}
+    if (age == 0 || height == 0 || weight == 0) return 2000;
+    double bmr;
+    if (gender == "Hombre") {
+      bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    } else {
+      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    }
     double factor = 1.375;
-  if (trainingDays <= 2) factor = 1.2;
-  else if (trainingDays <= 4) factor = 1.375;
-  else if (trainingDays <= 6) factor = 1.55;
-  else factor = 1.725;
-  if (goals.contains("Perder grasa")) return bmr * factor - 300;
-  if (goals.contains("Ganar músculo")) return bmr * factor + 300;
-  return bmr * factor;
+    if (trainingDays <= 2) factor = 1.2;
+    else if (trainingDays <= 4) factor = 1.375;
+    else if (trainingDays <= 6) factor = 1.55;
+    else factor = 1.725;
+    if (goals.contains("Perder grasa")) return bmr * factor - 300;
+    if (goals.contains("Ganar musculo")) return bmr * factor + 300;
+    return bmr * factor;
   }
-String get fitnessLevel {
-if (experience == "Sedentario total" || experience == "Principiante (nunca he entrenado)") return "Principiante";
-  if (experience == "Principiante con algo de base" || experience == "Intermedio") return "Intermedio";
-  return "Avanzado";
+
+  String get fitnessLevel {
+    if (experience == "Sedentario total" || experience == "Principiante (nunca he entrenado)") return "Principiante";
+    if (experience == "Principiante con algo de base" || experience == "Intermedio") return "Intermedio";
+    return "Avanzado";
   }
-bool get isSenior => age >= 60;
+
+  bool get isSenior => age >= 60;
   bool get isPregnant => limitations.contains("Embarazo");
   bool get isPostpartum => limitations.contains("Posparto");
 }
