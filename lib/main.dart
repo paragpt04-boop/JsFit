@@ -435,8 +435,7 @@ class _OnboardState extends State<OnboardingScreen> {
   Widget _buildWelcomePage() => _pageWrapper(
     emoji: "🏋️",
     title: "Bienvenido a JsFit",
-    subtitle: "Tu entrenador personal adaptado a TI.
-Vamos a conocerte para crear tu plan perfecto.",
+    subtitle: "Tu entrenador personal adaptado a TI. Vamos a conocerte para crear tu plan perfecto.",
     child: Column(children: [
       _infoCard("✅", "Planes 100% personalizados"),
       _infoCard("🌍", "Para todo tipo de personas"),
