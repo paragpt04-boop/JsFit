@@ -886,7 +886,7 @@ class HomeTab extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: featured ? null : Border.all(color: cBg2)),
       child: Row(children: [
-        Text(w.emoji, style: const TextStyle(fontSize: featured ? 36 : 28)),
+        Text(w.emoji, style: TextStyle(fontSize: featured ? 36.0 : 28.0)),
         const SizedBox(width: 12),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(w.name, style: const TextStyle(color: cWhite, fontSize: 16, fontWeight: FontWeight.bold)),
